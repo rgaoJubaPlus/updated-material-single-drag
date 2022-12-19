@@ -1,0 +1,56 @@
+<div style="width: 100%;background-color: yellow"> 
+  
+  
+  <div class="video-container">
+
+    
+    <video autoplay muted loop>
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+    </video>
+    <div class="caption">
+      <textarea ng-model="myTextarea"
+      style="height: 50px; width: width: 100%;;  background-color: transparent; border: 0 none;z-index: 1" 
+      cdkDrag 
+      cdkDragBoundary=".container"
+      (cdkDragEnded)="onDragEnded('reel1', $event)"> 😋 Get Emoji — All Emojis to ✂️ Copy and 📋 Paste 👌</textarea>
+
+
+    <textarea ng-model="myTextarea"
+      style="height: 50px; width: 200px; background-color: red; z-index: 1" 
+      cdkDrag 
+      cdkDragBoundary=".container"
+      (cdkDragEnded)="onDragEnded('reel2', $event)"> 😋 Get Emoji — All Emojis to ✂️</textarea>
+
+    <textarea ng-model="myTextarea"
+      style="height: 50px; width: 200px; background-color: red; z-index: 1" 
+      cdkDrag 
+      cdkDragBoundary=".container"
+      (cdkDragEnded)="onDragEnded('reel3', $event)"> 😋 Get Emoji </textarea>
+    </div>
+  </div>
+
+  
+
+  <button (click) = "saveThePlan()"> save </button>
+</div>
+
+<div style="width: 100%"> 
+  <mat-form-field class="example-chip-list" appearance="fill">
+    <mat-label>Favorite Fruits</mat-label>
+    <mat-chip-grid #chipGrid aria-label="Enter fruits">
+      <mat-chip-list *ngFor="let fruit of fruits"
+                    (removed)="remove(fruit)"
+                    (edited)="edit(fruit, $event)">
+        {{fruit.name}}
+        <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-list>
+      <input placeholder="New fruit..."
+            [matChipInputFor]="chipGrid"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)"/>
+    </mat-chip-grid>
+  </mat-form-field>
+</div>
